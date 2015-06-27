@@ -1,0 +1,21 @@
+## Tor opens a socks proxy on port 9050 by default -- even if you don't
+## configure one below. Set "SocksPort 0" if you plan to run Tor only
+## as a relay, and not make any local application connections yourself.
+SocksPort 0.0.0.0:9050 # Listen externally for connection
+
+## Uncomment this to start the process in the background... or use
+## --runasdaemon 1 on the command line. This is ignored on Windows;
+## see the FAQ entry if you want Tor to run as an NT service.
+RunAsDaemon 0
+
+## Transparent Proxy
+## https://trac.torproject.org/projects/tor/wiki/doc/TransparentProxy
+VirtualAddrNetworkIPv4 10.192.0.0/10
+AutomapHostsOnResolve 1
+TransPort 9040
+TransPort 9040
+TransListenAddress 127.0.0.1
+TransListenAddress 0.0.0.0
+DNSPort 53
+DNSListenAddress 127.0.0.1
+DNSListenAddress 0.0.0.0
