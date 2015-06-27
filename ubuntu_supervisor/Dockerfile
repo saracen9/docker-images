@@ -19,7 +19,9 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y \
     nano \
     git \
-    p7zip-full
+    p7zip-full \
+    wget \
+    curl
 
 # supervisor installation &&
 # create directory for child images to store configuration in
@@ -28,7 +30,7 @@ RUN apt-get -y install supervisor && \
     mkdir -p /etc/supervisor/conf.d
 
 # supervisor base configuration
-ADD supervisor.conf /etc/supervisor/supervisor.conf
+ADD configs/supervisor.conf /etc/supervisor/supervisor.conf
 
 # STARTUP
 # default initialisation command

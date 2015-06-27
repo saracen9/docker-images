@@ -9,19 +9,20 @@ MAINTAINER James Veitch <james@jamesveitch.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 # BUILD
+RUN apt-get update
 
 # install tor
-ADD tor.list /etc/apt/sources.list.d/
+ADD configs/tor.list /etc/apt/sources.list.d/
 RUN gpg --keyserver keys.gnupg.net --recv 886DDD89 &&\
     gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 RUN apt-get update
 RUN apt-get install -y tor deb.torproject.org-keyring
 
 # add supervisor configuration into default folder
-ADD tor.sv.conf /etc/supervisor/conf.d/
+ADD configs/tor.sv.conf /etc/supervisor/conf.d/
 
 # add torrc configuration
-ADD torrc /etc/tor/
+ADD configs/torrc /etc/tor/
 
 # modify the system DNS resolver
 RUN echo "nameserver 127.0.0.1" > /etc/resolv.conf
