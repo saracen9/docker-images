@@ -22,12 +22,14 @@ def random_password(length=64):
 
     return password
 
-def create_config(path):
+def create_config(path, port=None):
     mkdir_p(os.path.dirname(path))
 
     lines = []
     lines.append("rpcuser=p2pool")
     lines.append("rpcpassword={0}".format(random_password()))
+    if port:
+        lines.append("port={0}".format(port))
 
     with open(path, 'w') as f:
         f.write('\n'.join(lines))
