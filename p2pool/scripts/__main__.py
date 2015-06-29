@@ -47,6 +47,7 @@ COINS = {
 for coin in COINS:
     print coin, COINS[coin]
     create_config(os.path.join(HOME, '.{0}'.format(coin), '{0}.conf'.format(coin)),
-        port=COINS[coin]['port'])
+        port=COINS[coin]['port']
+    )
     if coin != 'bitcoin':
-        compile_from_source(COINS[coin], HOME)
+        compile_from_source(COINS[coin], os.path.join(HOME, 'Altcoin'), coin)

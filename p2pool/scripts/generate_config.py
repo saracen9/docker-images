@@ -1,15 +1,7 @@
 import os
 import random
 import string
-import errno
-
-def mkdir_p(path):
-    try:
-        os.makedirs(path)
-    except OSError as exc: # Python >2.5
-        if exc.errno == errno.EEXIST and os.path.isdir(path):
-            pass
-        else: raise
+from helpers import mkdir_p
 
 def random_password(length=64):
     available_chars = string.ascii_letters + string.digits + '!@#$%^&*()'
