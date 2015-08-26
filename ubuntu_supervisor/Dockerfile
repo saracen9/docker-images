@@ -32,6 +32,11 @@ RUN apt-get -y install supervisor && \
 # supervisor base configuration
 ADD configs/supervisor.conf /etc/supervisor/supervisor.conf
 
+RUN echo -e "\n[inet_http_server]\nport = *:9001\nusername = user\npassword = pass" >> /etc/supervisor/supervisord.conf
+
+# PORTS
+EXPOSE 9001
+
 # STARTUP
 # default initialisation command
 CMD ["supervisord", "-c", "/etc/supervisor/supervisor.conf"]
